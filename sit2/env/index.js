@@ -1,11 +1,11 @@
 module.exports = {
   app: {
-    title: 'sso',
+    title: 'sit2',
     description: 'single sign on app',
-    keywords: 'sso'
+    keywords: 'sit2'
   },
   url: '127.0.0.1',
-  port: 7000,
+  port: 7002,
   db: {
     url: 'mongodb://127.0.0.1:27017/test',
     model: 'users',  // 数据库表名
