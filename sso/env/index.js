@@ -11,6 +11,11 @@ module.exports = {
     model: 'users',  // 数据库表名
   },
   cookieSecret: 'cat',
+  session: {
+    sessionID: 'sessionID',
+    resave: false,
+    saveUninitialized: true
+  },
   cookie: {
     maxAge: 24 * (60 * 60 * 1000),
     httpOnly: true,
@@ -20,6 +25,6 @@ module.exports = {
   redis: {
     host: '127.0.0.1',
     port: '6379',
-    ttl: 24 * (60 * 60 * 3),
+    ttl: 10,  // redis 数据过期时间 秒
   },
 };

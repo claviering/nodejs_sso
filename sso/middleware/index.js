@@ -3,7 +3,6 @@ const mongo = require('./mongo');
 const session = require('./session');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser')
-const passport = require('./passport');
 const flash = require('./flash');
 module.exports = (app) => {
   // cookies 解析
@@ -17,8 +16,7 @@ module.exports = (app) => {
   mongo()
   // session 中间件
   app.use(session)
-  // passport 中间件
-  passport(app)
+
   // flash 中间件
   flash(app)
 };

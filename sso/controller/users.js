@@ -1,5 +1,4 @@
 const debug = require('debug')('sso:users');
-const passport = require('passport');
 const bcrypt = require('bcryptjs');
 const userModels = require('../models/user');
 
@@ -64,15 +63,27 @@ module.exports = {
     }
   },
   registerPage: (req, res) => res.render('register'),
-  login: (req, res, next) => {
-    passport.authenticate('local', {
-      successRedirect: '/dashboard',
-      failureRedirect: '/users/login',
-      failureFlash: true
-    })(req, res, next);
+  login: async (req, res) => {
+    const { email, password } = req.body;
+    debug('email, password ', email, password )
+    let user = await userModels.findOne({ email }).exec()
+    if (!user) {
+      req.flash('error_msg', 'That email is not registered')
+      res.redirect('/users/login');
+    };
+    bcrypt.compare(password, user.password, (err, isMatch) => {
+      if (err) throw err;
+      if (isMatch) {
+        req.session.isLogin = true
+        res.redirect('/dashboard');
+      } else {
+        req.flash('error_msg', 'Password incorrect');
+        res.redirect('/users/login');
+      }
+    });
   },
   logout: (req, res) => {
-    req.logout();
+    req.session.isLogin = false
     req.flash('success_msg', 'You are logged out');
     res.redirect('/users/login');
   }

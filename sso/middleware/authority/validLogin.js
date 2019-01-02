@@ -1,10 +1,11 @@
 const debug = require('debug')('sso:validLogin');
 
 module.exports = async (req, res, next) => {
-  if (req.session) {
-    debug(req.session)
+  debug('valid login')
+  if (req.session.isLogin) {
     await next();
   } else {
-    res.sendStatus(401); 
+    res.status(401);
+    res.redirect('/users/login');
   }
 };
