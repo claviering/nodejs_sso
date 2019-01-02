@@ -1,15 +1,12 @@
+const debug = require('debug')('sso:users');
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
 const userModels = require('../models/user');
 
 module.exports = {
   index: (req, res) => res.render('login'),
-  registerPage: async (req, res) => {
-    try {
-
-    } catch (error) {
-      res.send(error)
-    }
+  register: async (req, res) => {
+    debug(req.body)
     const { name, email, password, password2 } = req.body;
     let errors = [];
   
@@ -66,7 +63,7 @@ module.exports = {
       }
     }
   },
-  register: (req, res) => res.render('register'),
+  registerPage: (req, res) => res.render('register'),
   login: (req, res, next) => {
     passport.authenticate('local', {
       successRedirect: '/dashboard',
