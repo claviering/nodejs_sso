@@ -3,14 +3,14 @@ const redis = require('redis');
 const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
 const debug = require('debug')('sit2:redis');
-const client = redis.createClient(config.redis.port, config.redis.host);
+const client = redis.createClient(config.redis.port, config.redis.hosts);
 
 client.on('ready', () => {
     debug('redis online');
 });
 
 client.on('connect', () => {
-    debug(`connect redis ${config.redis.host + ':' + config.redis.port} success`);
+    debug(`connect redis ${config.redis.hosts + ':' + config.redis.port} success`);
 });
 
 client.on('error', (err) => {

@@ -1,3 +1,4 @@
+const express = require('express');
 const ejs = require('./ejs');
 const mongo = require('./mongo');
 const session = require('./session');
@@ -5,6 +6,8 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser')
 const flash = require('./flash');
 module.exports = (app) => {
+  // 静态资源
+  app.use(express.static('sso/public'))
   // cookies 解析
   app.use(cookieParser())
   // body 解析

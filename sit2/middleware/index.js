@@ -13,7 +13,7 @@ module.exports = (app) => {
   // 模板引擎
   ejs(app)
   // 连接 mongodb
-  mongo()
+  // mongo()
   // session 中间件
   app.use(session)
 

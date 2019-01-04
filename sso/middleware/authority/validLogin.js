@@ -6,6 +6,6 @@ module.exports = async (req, res, next) => {
     await next();
   } else {
     res.status(401);
-    res.redirect('/users/login');
+    res.redirect('http://sso.example.com:7000/users/login');
   }
 };

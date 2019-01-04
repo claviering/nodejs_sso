@@ -8,7 +8,7 @@ const config = require('./sso/env');
 
 middleware(app);
 router(app)
-app.listen(config.port, debug(`Server started on http://${config.url}:${config.port}`));
+app.listen(config.port, debug(`Server started on http://${config.hosts}:${config.port}`));
 
 // 多线程
 // if (cluster.isMaster) {
@@ -18,12 +18,12 @@ app.listen(config.port, debug(`Server started on http://${config.url}:${config.p
 //     cluster.fork();
 //   }
 //   cluster.on('listening', (worker, address) => {
-//     debug(`worker ${worker.process.pid}, listen: http://${config.url}:${config.port}`);
+//     debug(`worker ${worker.process.pid}, listen: http://${config.hosts}:${config.port}`);
 //   });
 //   cluster.on('exit', (worker, code, signal) => {
 //     debug(`worker ${worker.process.pid} died`);
 //     cluster.fork();
 //   });
 // } else {
-//   app.listen(config.port, debug(`Server started on http://${config.url}:${config.port}`));
+//   app.listen(config.port, debug(`Server started on http://${config.hosts}:${config.port}`));
 // }

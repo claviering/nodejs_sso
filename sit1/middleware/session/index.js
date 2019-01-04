@@ -5,10 +5,10 @@ const { redisInstance } = require('../redis');
 
 //  express-session v1.5.0 开始 不再需要 cookie-parser 中间件
 module.exports = session({
-  name: config.sessionID,
+  name: config.session.sessionID,
   secret: config.session.secret,
   resave: config.session.resave,
   saveUninitialized: config.session.saveUninitialized,
   cookie: config.cookie,
-  store: redisInstance
+  // store: redisInstance
 })

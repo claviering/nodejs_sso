@@ -1,7 +1,7 @@
 const debug = require('debug')('sso:default');
 module.exports = {
   default: (req, res) => {
-    res.render('welcome');
+    req.session.isLogin ? res.render('dashboard') : res.render('welcome');
   },
   dashboard: (req, res) => {
     debug('req.cookies', req.cookies)

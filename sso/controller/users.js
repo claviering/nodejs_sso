@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const userModels = require('../models/user');
 
 module.exports = {
-  index: (req, res) => res.render('login'),
+  index: (req, res) => req.session.isLogin ? res.render('dashboard') : res.render('login'),
   register: async (req, res) => {
     debug(req.body)
     const { name, email, password, password2 } = req.body;

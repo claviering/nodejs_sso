@@ -1,11 +1,11 @@
 const debug = require('debug')('sit2:default');
 module.exports = {
   default: (req, res) => {
-    res.render('welcome');
+    res.send('welcome');
   },
   dashboard: (req, res) => {
     debug('req.cookies', req.cookies)
     debug('req.session', req.session)
-    res.render('dashboard');
+    res.send('dashboard');
   }
 };

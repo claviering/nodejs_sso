@@ -6,4 +6,4 @@ const config = require('./sit2/env');
 
 middleware(app);
 router(app)
-app.listen(config.port, debug(`Server started on http://${config.url}:${config.port}`));
+app.listen(config.port, debug(`Server started on http://${config.hosts}:${config.port}`));
