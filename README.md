@@ -10,7 +10,7 @@ Nodejs 实现 SSO
 
 ## 配置 nginx
     server {
-        listen 7000;
+        listen 9000;
         server_name sso.example.com;
         location / {
             proxy_set_header Host $host;
@@ -20,7 +20,7 @@ Nodejs 实现 SSO
         }
     }
     server {
-        listen 7000;
+        listen 9000;
         server_name sit1.example.com;
         location / {
             proxy_set_header Host $host;
@@ -30,7 +30,7 @@ Nodejs 实现 SSO
         }
     }
     server {
-        listen 7000;
+        listen 9000;
         server_name sit2.example.com;
         location / {
             proxy_set_header Host $host;
@@ -46,7 +46,7 @@ Nodejs 实现 SSO
 
 访问
 
-http://sso.example.com:7000
+http://sso.example.com:9000
 
 参考
 

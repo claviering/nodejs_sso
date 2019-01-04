@@ -10,6 +10,6 @@ module.exports = async (req, res, next) => {
   } else {
     await token(req)
     res.status(401);
-    res.send('no login');
+    res.redirect('http://sso.example.com:9000/users/login');
   }
 };
