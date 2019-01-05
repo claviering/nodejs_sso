@@ -6,6 +6,6 @@ module.exports = {
   dashboard: (req, res) => {
     debug('req.cookies', req.cookies)
     debug('req.session', req.session)
-    res.send('dashboard');
+    res.send('dashboard sit1');
   }
 };

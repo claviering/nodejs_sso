@@ -1,11 +1,11 @@
 module.exports = {
   app: {
-    title: 'sit1',
+    title: 'passport',
     description: 'single sign on app',
-    keywords: 'sit1'
+    keywords: 'passport'
   },
   hosts: '127.0.0.1',
-  port: 7001,
+  port: 7000,
   db: {
     hosts: 'mongodb://127.0.0.1:27017/test',
     model: 'users',  // 数据库表名
@@ -26,6 +26,10 @@ module.exports = {
   redis: {
     hosts: '127.0.0.1',
     port: '6379',
-    ttl: 10,  // redis 数据过期时间 秒
+    ttl: 60 * 60 * 24,  // redis 数据过期时间 秒
   },
+  token: {
+    secret: 'secret',
+    expiresIn: 60 * 60 * 24
+  }
 };
