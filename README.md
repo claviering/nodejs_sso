@@ -36,6 +36,8 @@ Nodejs 实现 passport
 
 http://passport.example.com:9000
 
+http://sit1.example.com:9000
+
 参考
 
 > [bradtraversy](https://github.com/bradtraversy/node_passport_login)
