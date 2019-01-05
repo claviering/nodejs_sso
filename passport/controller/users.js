@@ -3,27 +3,7 @@ const bcrypt = require('bcryptjs');
 const userModels = require('../models/user');
 const jwt = require('jsonwebtoken');
 const config = require('../env/index');
-const { client } = require('../middleware/redis');
-
-const storeToken = async (token) => {
-  try {
-    let value = {
-      isLogin: true
-    }
-    await client.set(token, JSON.stringify(value), 'EX', config.redis.ttl)
-    debug('storeToken')
-  } catch (err) {
-    throw err
-  }
-};
-
-const deleteToken = (token) => {
-  try {
-    client.del(token)
-  } catch (err) {
-    throw err
-  }
-};
+const token = require('../utils/token');
 
 module.exports = {
   loginPage: (req, res) => res.render('login'),
@@ -104,8 +84,8 @@ module.exports = {
           { expiresIn: config.token.expiresIn }
         );
         debug('newToken', newToken)
-        await storeToken(newToken);
-        res.setHeader('Set-Cookie',`token=${newToken};path=/;domain=example.com;max-age=${config.token.expiresIn};httpOnly`);
+        await token.setToken(newToken);
+        res.setHeader('Set-Cookie',`token=${newToken};path=/;domain=example.com;max-age=${config.cookie.maxAge};httpOnly`);
         res.redirect('/dashboard');
       } else {
         req.flash('error_msg', 'Password incorrect');
@@ -115,7 +95,7 @@ module.exports = {
   },
   logout: (req, res) => {
     req.session.isLogin = false
-    deleteToken(req.cookies.token)
+    token.removeToken(req.cookies.token)
     req.flash('success_msg', 'You are logged out');
     res.redirect('/users/login');
   }
