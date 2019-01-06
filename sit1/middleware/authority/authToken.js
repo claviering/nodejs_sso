@@ -9,14 +9,13 @@ module.exports = async (req, res, next) => {
     return
   }
   try {
-    let url = api.passport.hosts + api.passport.router
-    let result = await axios.post(url, {token: req.cookies.token})
+    let result = await axios.post(api.passport.hosts + api.passport.router, {token: req.cookies.token})
     if (result.data.isLogin) {
       req.session.isLogin = true;
       next();
       return
     }
-    res.send('no login')
+    res.redirect('http://passport.example.com:9000/users/login')
   } catch (err) {
     res.send(err)
   }

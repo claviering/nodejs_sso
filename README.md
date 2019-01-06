@@ -38,6 +38,24 @@ http://passport.example.com:9000
 
 http://sit1.example.com:9000
 
+## passport 系统
+
+- 提供用户认证
+- 生成 token
+- token 保存到 redis 数据库
+- 开放 token 认证 api
+
+## sit1 系统
+
+子系统
+
+首次进入会请求 passport 系统, 验证 Cookies 中的 token, passport 系统使用 token 查询 redis 数据库获取 Session 返回给 sit1 系统
+
+## 问题
+
+Cookies 安全??
+
+
 参考
 
 > [bradtraversy](https://github.com/bradtraversy/node_passport_login)

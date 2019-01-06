@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser')
 const flash = require('./flash');
 module.exports = (app) => {
   // 静态资源
-  app.use(express.static('passport/public'))
+  app.use(express.static('public'))
   // cookies 解析
   app.use(cookieParser())
   // body 解析
