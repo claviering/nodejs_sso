@@ -1,6 +1,6 @@
-# passport
+# sso
 
-Nodejs 实现 passport
+Nodejs 实现 sso
 
 ## 配置 hosts
 
